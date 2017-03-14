@@ -2,3 +2,84 @@ body {
 	background-color: lightgrey;
 	font-style: "Arial", "Helvetica Neue", "Helvetica", "sans-serif";
 }
+
+#box {
+	text-align: center;
+	background-color: #ffffff;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 20px 20px 20px 20px;
+}
+
+#question {
+	text-align: center;
+	background-color: #ffffff;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 20px 20px 20px 20px;
+}
+
+#answerbox {
+	text-align: center;
+	background-color: #ffffff;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 50px 100px 100px 100px;
+	margin-top: 20px;
+}
+
+#answer1 {
+	text-align: center;
+	background-color: #ffffff;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 40px 30px 20px 30px;
+	margin: 10px 10px 10px 10px;
+	width: 150px;
+	height: 50px;
+	float: left;
+}
+#answer2 {
+	text-align: center;
+	background-color: #ffffff;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 40px 30px 20px 30px;
+	margin: 10px 10px 10px 10px;
+	width: 150px;
+	height: 50px;
+	float: left;
+}
+#answer3 {
+	text-align: center;
+	background-color: #ffffff;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 40px 30px 20px 30px;
+	margin: 10px 10px 10px 10px;
+	width: 150px;
+	height: 50px;
+	float: left;
+}
+#answer4 {
+	text-align: center;
+	background-color: #ffffff;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 40px 30px 20px 30px;
+	margin: 10px 10px 10px 10px;
+	width: 150px;
+	height: 50px;
+	float: left;
+}
+
+#answer1:hover, #answer2:hover, #answer3:hover, #answer4:hover {
+	background-color: yellow
+}

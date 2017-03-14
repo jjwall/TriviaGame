@@ -2,17 +2,23 @@ $(document).ready(function() {
 
 	var x = -1;
 
-	var questionArray = ["Yes or no?", "X or Y?"];
+	var correctCount = 0;
 
-	var correctAnswers = ["yes", "y"]
+	var wrongCount = 0;
 
-	var answerArray1 = ["yes", "x"];
+	var unansweredCount = 0;
 
-	var answerArray2 = ["no", "y"];
+	var questionArray = ["What was Texas known as before being annexed into the USA?", "What side was Texas on during the Civil War?", "What's the offical language of Texas?", "What's the Official State Bird of Texas?", "Texas is predominantly a _________ state.", "Texas is the 2nd biggest state in terms of population.", "Texas is the 2nd biggest state in terms of land mass.", "What's the Capital of Texas?", "What's the largest city in Texas?", "Who's the governor of Texas?"];
 
-	var answerArray3 = ["maybe", "z"];
+	var correctAnswers = ["The Republic of Texas", "Confederate", "No official language", "Mockingbird", "Republican", "True", "True", "Austin", "Houston", "Greg Abbott"]
 
-	var answerArray4 = ["so", "abc"];
+	var answerArray1 = ["The United State of Texas", "Union", "English", "Mockingbird", "Democratic", "True", "True", "Houston", "Houston", "Rick Perry"];
+
+	var answerArray2 = ["The Republic of Texas", "French", "Spanish", "Swallow", "Libertarian", "False", "False", "Dallas", "Dallas", "Karl Rove"];
+
+	var answerArray3 = ["The Confederate State of Texas", "North", "French", "Dove", "Republican", "Not sure", "Not sure", "Austin", "Austin", "Dan Patrick"];
+
+	var answerArray4 = ["The Nation of Texas", "Confederate", "No official language", "Feasant", "Green Party", "Texas isn't a state", "Texas isn't a state", "San Antonio", "San Antonio", "Greg Abbott"];
 
 	var answer1 = $("#answer1");
 
@@ -46,44 +52,52 @@ $(document).ready(function() {
 
 	function answerCheck1 (e) {
 		if (answerArray1[x].includes(correctAnswers[x])){
-			alert("correct!");
+			alert("Correct!");
+			correctCount++;
 			nextQuestion();
 		}
 		else {
-			alert("wrong!");
+			alert("Wrong!");
+			wrongCount++;
 			nextQuestion();
 		}
 	}
 
 	function answerCheck2 (e) {
 		if (answerArray2[x].includes(correctAnswers[x])){
-			alert("correct!")
+			alert("Correct!");
+			correctCount++;
 			nextQuestion();
 		}
 		else {
-			alert("wrong!")
+			alert("Wrong!");
+			wrongCount++;
 			nextQuestion();
 		}
 	}
 
 	function answerCheck3 (e) {
 		if (answerArray3[x].includes(correctAnswers[x])){
-			alert("correct!");
+			alert("Correct!");
+			correctCount++;
 			nextQuestion();
 		}
 		else {
-			alert("wrong!");
+			alert("Wrong!");
+			wrongCount++;
 			nextQuestion();
 		}
 	}
 
 	function answerCheck4 (e) {
 		if (answerArray4[x].includes(correctAnswers[x])){
-			alert("correct!")
+			alert("Correct!");
+			correctCount++;
 			nextQuestion();
 		}
 		else {
-			alert("wrong!")
+			alert("Wrong!");
+			wrongCount++;
 			nextQuestion();
 		}
 	}
