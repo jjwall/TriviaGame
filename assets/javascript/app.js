@@ -30,6 +30,8 @@ $(document).ready(function() {
 
 	var question = $("#question");
 
+	var restart = $('<input type="button" value="Restart"/>');
+
 
 	function nextQuestion (e) {
 		x++;
@@ -43,6 +45,17 @@ $(document).ready(function() {
 		answer2.append(answerArray2[x]);
 		answer3.append(answerArray3[x]);
 		answer4.append(answerArray4[x]);
+		if (x === 9){
+			question.hide();
+			answer1.hide();
+			answer2.hide();
+			answer3.hide();
+			answer4.hide();
+			$("#correct").show().append("Correct answers: " + correctCount);
+			$("#wrong").show().append("Wrong answers: " + wrongCount);
+			$("#unanswered").show().append("Unanswered: " + unansweredCount);
+			restartFunc();
+		}
 	}
 
 	answer1.bind("click", answerCheck1);
@@ -102,5 +115,33 @@ $(document).ready(function() {
 		}
 	}
 	nextQuestion();
+
+	var restartFunc = (function() {
+    var executed = false;
+    return function () {
+        if (!executed) {
+            executed = true;
+            $("#reset").show();
+			$("#reset").append(restart);
+        }
+    };
+})();
+
+restart.on("click", function(){
+	$("#correct").empty().hide();
+	$("#wrong").empty().hide();
+	$("#unanswered").empty().hide();
+	$("#reset").hide();
+	x = -1;
+	correctCount = 0;
+	wrongCount = 0;
+	unansweredCount = 0;
+	nextQuestion();
+	question.show();
+	answer1.show();
+	answer2.show();
+	answer3.show();
+	answer4.show();
+});
 
 })
