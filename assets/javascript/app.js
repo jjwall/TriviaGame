@@ -123,6 +123,7 @@ $(document).ready(function() {
             executed = true;
             $("#reset").show();
 			$("#reset").append(restart);
+			executed = false;
         }
     };
 })();
