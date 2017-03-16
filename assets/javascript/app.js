@@ -32,9 +32,36 @@ $(document).ready(function() {
 
 	var restart = $('<input type="button" value="Restart"/>');
 
+	var time;
+
+	function startTimer (e) {
+
+		time = 15;
+
+		setInterval(function(){
+			console.log(time);
+			$("#timer").empty();
+			$("#timer").append(time);
+			if (time === 0){
+			$("#message").text("Out of time!");
+			unansweredCount++;
+			displayGif();
+	}
+	time--;}, 1000);
+}
+
+startTimer();
 
 	function nextQuestion (e) {
 		x++;
+		$("#gifs-appear-here").hide();
+		$("#message").text("");
+		$("#timer").show();
+		question.show();
+		answer1.show();
+		answer2.show();
+		answer3.show();
+		answer4.show();
 		question.empty();
 		answer1.empty();
 		answer2.empty();
@@ -45,18 +72,50 @@ $(document).ready(function() {
 		answer2.append(answerArray2[x]);
 		answer3.append(answerArray3[x]);
 		answer4.append(answerArray4[x]);
-		if (x === 9){
-			question.hide();
-			answer1.hide();
-			answer2.hide();
-			answer3.hide();
-			answer4.hide();
-			$("#correct").show().append("Correct answers: " + correctCount);
-			$("#wrong").show().append("Wrong answers: " + wrongCount);
-			$("#unanswered").show().append("Unanswered: " + unansweredCount);
-			restartFunc();
+		if (x === 10){
+			setTimeout(function(){
+				question.hide();
+				answer1.hide();
+				answer2.hide();
+				answer3.hide();
+				answer4.hide();
+				$("#correct").show().append("Correct answers: " + correctCount);
+				$("#wrong").show().append("Wrong answers: " + wrongCount);
+				$("#unanswered").show().append("Unanswered: " + unansweredCount);
+				restartFunc();}, 500);
 		}
 	}
+
+	function displayGif (e) {
+		$("#timer").hide();
+		question.hide();
+		answer1.hide();
+		answer2.hide();
+		answer3.hide();
+		answer4.hide();
+		//will need to show after alloted time to display gif is up
+
+		$("#gifs-appear-here").show().empty();
+		var gifArray = ["The Republic of Texas", "Civil War", "gibberish", "Mockingbird", "Republican", "Large Crowd", "Texas", "Austin", "Houston", "Greg Abbott"]
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        gifArray[x] + "&api_key=dc6zaTOxFJmzC&limit=10";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).done(function(response) {
+      	var results = response.data;
+      	var gifDiv = $("<div class='item'>");
+      	var gifImage = $("<img>");
+      	gifImage.attr("src", results[0].images.fixed_height.url);
+      	gifDiv.prepend(gifImage);
+          $("#gifs-appear-here").prepend(gifDiv);
+	});
+      setTimeout(function(){
+      	time = 15;
+      	nextQuestion();
+      	}, 4900);
+}
 
 	answer1.bind("click", answerCheck1);
 	answer2.bind("click", answerCheck2);
@@ -65,53 +124,53 @@ $(document).ready(function() {
 
 	function answerCheck1 (e) {
 		if (answerArray1[x].includes(correctAnswers[x])){
-			alert("Correct!");
+			$("#message").text("Correct!");
 			correctCount++;
-			nextQuestion();
+			displayGif();
 		}
 		else {
-			alert("Wrong!");
+			$("#message").text("Wrong!");
 			wrongCount++;
-			nextQuestion();
+			displayGif();
 		}
 	}
 
 	function answerCheck2 (e) {
 		if (answerArray2[x].includes(correctAnswers[x])){
-			alert("Correct!");
+			$("#message").text("Correct!");
 			correctCount++;
-			nextQuestion();
+			displayGif();
 		}
 		else {
-			alert("Wrong!");
+			$("#message").text("Wrong!");
 			wrongCount++;
-			nextQuestion();
+			displayGif();
 		}
 	}
 
 	function answerCheck3 (e) {
 		if (answerArray3[x].includes(correctAnswers[x])){
-			alert("Correct!");
+			$("#message").text("Correct!");
 			correctCount++;
-			nextQuestion();
+			displayGif();
 		}
 		else {
-			alert("Wrong!");
+			$("#message").text("Wrong!");
 			wrongCount++;
-			nextQuestion();
+			displayGif();
 		}
 	}
 
 	function answerCheck4 (e) {
 		if (answerArray4[x].includes(correctAnswers[x])){
-			alert("Correct!");
+			$("#message").text("Correct!");
 			correctCount++;
-			nextQuestion();
+			displayGif();
 		}
 		else {
-			alert("Wrong!");
+			$("#message").text("Wrong!");
 			wrongCount++;
-			nextQuestion();
+			displayGif();
 		}
 	}
 	nextQuestion();
@@ -121,6 +180,8 @@ $(document).ready(function() {
     return function () {
         if (!executed) {
             executed = true;
+            $("#timer").hide();
+            time = -1;
             $("#reset").show();
 			$("#reset").append(restart);
 			executed = false;
@@ -137,6 +198,7 @@ restart.on("click", function(){
 	correctCount = 0;
 	wrongCount = 0;
 	unansweredCount = 0;
+	time = 15;
 	nextQuestion();
 	question.show();
 	answer1.show();
